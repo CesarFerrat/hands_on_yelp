@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to("Omnilp", root_path, class: "navbar-brand") %>
+     </div>
+      <nav class="collapse navbar-collapse" id="onmiyelp-navbar-collapse-1" role="navigation">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "About", landings_about_path %></li>
+          <li><%= link_to "Contact", landings_contact_path %></li>
+        </ul>
+        <%= form_tag search_restaurants_path, method: :get, class: "navbar-form navbar-left" do %>
+          <p>
+            <%= text_field_tag :search, params[:search], class: "form-control" %>
+            <%= submit_tag "Search", name: nil, class: "btn btn-default"%>
+          </p>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+          <% unless user_signed_in? %>
+            <li><%= link_to "signup", new_user_registration_path %></li>
+            <li><%= link_to "signin", new_user_session_path %></li>
+      <% else %> 
+        <li><%= link_to "sign out", destroy_user_session_path, method: :delete %></li>
+            <li><%= link_to "profile", edit_user_registration_path %></li>
+      <% end %>
+        </ul>
+      </nav><!-- nav bar collapse-->
+  </div><!-- container.fluid -->
+</nav>
